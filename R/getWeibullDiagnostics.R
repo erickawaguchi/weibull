@@ -13,9 +13,9 @@
 #' subset = (type == 1))
 #' getWeibullDiagnostics(fit)
 #' @export
-#' @importFrom stats pnorm
+#' @importFrom stats pnorm resid
 #' @importFrom graphics plot lines abline
-#' @importFrom survival survfit resid
+#' @importFrom survival survfit
 
 getWeibullDiagnostics <- function(fit) {
   
