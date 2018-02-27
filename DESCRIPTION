@@ -1,10 +1,10 @@
 Package: weibull
 Type: Package
-Title: Parameter estimation and model diagnostics for Weibull regression.
+Title: Parameter estimation and model diagnostics for Weibull regression
 Version: 1.1.0
 Author: Eric S. Kawaguchi [aut, cre]
 Maintainer: Eric S. Kawaguchi <erickawaguchi@ucla.edu>
-Description: Parameter estimation and model diagnostics for Weibull regression. 
+Description: Parameter estimation and model diagnostics for Weibull regression
 Encoding: UTF-8
 Imports:
     survival (>= 2.41),

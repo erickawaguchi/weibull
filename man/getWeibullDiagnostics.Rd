@@ -19,9 +19,8 @@ Graphical Diagnostic Checks for Weibull AFT Model
 \examples{
 library(weibull)
 library(survival)
-library(KMsurv)
-data(alloauto, packge = "KMsurv")
-fit <- survreg(Surv(time, delta) ~ 1, data = alloauto, dist = "weibull", 
-subset = (type == 1))
+y <- rexp(100, rate = 2)
+delta <- rbinom(100, 1, prob = 0.8)
+fit <- survreg(Surv(y, delta) ~ 1, dist = "weibull")
 getWeibullDiagnostics(fit)
 }

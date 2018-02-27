@@ -7,10 +7,9 @@
 #' @examples
 #' library(weibull)
 #' library(survival)
-#' library(KMsurv)
-#' data(alloauto, packge = "KMsurv")
-#' fit <- survreg(Surv(time, delta) ~ 1, data = alloauto, dist = "weibull", 
-#' subset = (type == 1))
+#' y <- rexp(100, rate = 2)
+#' delta <- rbinom(100, 1, prob = 0.8)
+#' fit <- survreg(Surv(y, delta) ~ 1, dist = "weibull")
 #' getWeibullDiagnostics(fit)
 #' @export
 #' @importFrom stats pnorm resid
@@ -37,7 +36,7 @@ getWeibullDiagnostics <- function(fit) {
   fit2 <- survfit(Surv(ri, di) ~ 1)
   H.na <- cumsum(fit2$n.event / fit2$n.risk) #Nelson Aalen Estimator
   
-  plot(H.na ~ fit2$time, type = "l", main = "Cox-Snell Residual Plot",
+  plot(H.na ~ fit2$time, type = "l", main = "Cox-Snell Residual Plot \n (Weibull Assumption)",
        ylab = "Estimated Cumulative Hazard Rates", 
        xlab = "Cox-Snell Residual")
   abline(a = 0,  b = 1, col = "blue", lty = 2)
@@ -50,6 +49,7 @@ getWeibullDiagnostics <- function(fit) {
   abline(h = 0, col = "blue", lty = 2)
   
   out <- list()
+  out$y          <- data.frame(time = exp(fit$y[, 1]), delta = fit$y[, 2])
   out$coxsnell   <- ri
   out$martingale <- di - ri
   out$deviance   <- dev
